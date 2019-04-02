@@ -6,6 +6,11 @@
 </head>
 <body>
     <h1>Vis Persondata</h1>
-    <div th:text="${person.first_name} + ' ' + ${person.last_name}">for og efternavn</div>
+
+    <p th:each="person : ${persons}">
+        <span th:text="${person.first_name}" />
+        <span th:text="${person.last_name}" />
+    </p>
+
 </body>
 </html>

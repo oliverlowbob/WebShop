@@ -1,6 +1,8 @@
 package com.example.demodat18c.controller;
 
 import com.example.demodat18c.Model.Person;
+import com.example.demodat18c.Service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,9 @@ import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    PersonService personService;
 
     @GetMapping("/")
     public String index(){
@@ -27,8 +32,8 @@ public class HomeController {
 
     @GetMapping("/persondata")
     public String personData(Model model){
-        Person minPerson = new Person("Anja", "Andersen");
-        model.addAttribute("person", minPerson);
+
+        model.addAttribute("persons", personService.fetchAllPersons());
         return "persondata";
     }
 
