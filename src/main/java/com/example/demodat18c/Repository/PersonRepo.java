@@ -1,7 +1,12 @@
 package com.example.demodat18c.Repository;
 
 import com.example.demodat18c.Model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +14,27 @@ import java.util.List;
 @Repository
 public class PersonRepo {
 
+    @Autowired
+    JdbcTemplate template;
+
     public List<Person> fetchAllPersons(){
 
         //her skal der hentes personer fra databasen
+        String sql = "SELECT * FROM person";
+        RowMapper<Person> rowMapper = new BeanPropertyRowMapper<>(Person.class);
+        return template.query(sql, rowMapper);
 
-        List<Person> persons = new ArrayList<>();
-        persons.add(new Person("Kurt", "Hansen"));
-        persons.add(new Person("Donald", "Trump"));
-        persons.add(new Person("Hillary", "Clinton"));
-        persons.add(new Person("Benie", "Sanders"));
-
-        return persons;
+        //List<Person> persons = new ArrayList<>();
+        //persons.add(new Person("Kurt", "Hansen"));
+        //persons.add(new Person("Donald", "Trump"));
+        //persons.add(new Person("Hillary", "Clinton"));
+        //persons.add(new Person("Benie", "Sanders"));
+        //return persons;
     }
 
+    public void addPerson(Person person){
+        String sql = "INSERT INTO person (id, first_name, last_name) VALUES (?, ?, ?)";
+        template.update(sql, person.getId(), person.getFirst_name(), person.getLast_name());
+    }
+    
 }

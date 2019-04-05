@@ -18,4 +18,8 @@ public class PersonService {
         return personRepo.fetchAllPersons();
 
     }
+
+    public void addPerson(Person person){
+        personRepo.addPerson(person);
+    }
 }
