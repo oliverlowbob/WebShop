@@ -11,9 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+//annoter som repository - alt i databasehåndtering
 @Repository
 public class PersonRepo {
 
+    // brug JdbcTemplate
     @Autowired
     JdbcTemplate template;
 
@@ -21,7 +23,9 @@ public class PersonRepo {
 
         //her skal der hentes personer fra databasen
         String sql = "SELECT * FROM person";
+        // rowmapper mapper rækker i sql-query'en til en liste af Person
         RowMapper<Person> rowMapper = new BeanPropertyRowMapper<>(Person.class);
+        // udfør sql query
         return template.query(sql, rowMapper);
 
         //List<Person> persons = new ArrayList<>();
@@ -36,5 +40,5 @@ public class PersonRepo {
         String sql = "INSERT INTO person (id, first_name, last_name) VALUES (?, ?, ?)";
         template.update(sql, person.getId(), person.getFirst_name(), person.getLast_name());
     }
-    
+
 }

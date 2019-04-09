@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// annoter som service lag
 @Service
 public class PersonService {
 
+    // dependency injection af repository
     @Autowired
     PersonRepo personRepo;
 
+    // hent alle personer fra repository
     public List<Person> fetchAllPersons(){
 
         return personRepo.fetchAllPersons();

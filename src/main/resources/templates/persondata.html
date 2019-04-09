@@ -14,11 +14,13 @@
 <body>
     <h1>Vis Persondata</h1>
 
+    <!-- for each på persons i view model -->
     <p th:each="person : ${persons}">
         <span th:text="${person.first_name}" />
         <span th:text="${person.last_name}" />
     </p>
 
+    <!-- link til create ny person -->
     <a href="/create">Opret ny Person</a>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

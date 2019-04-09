@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
+// annotation for controller
 @Controller
 public class HomeController {
 
+    //dependency injection af PersonService
     @Autowired
     PersonService personService;
 
@@ -31,10 +33,12 @@ public class HomeController {
         return "index2";
     }
 
+    //route for /persondata - view model Model bruges til at få data til og fra view og browser
     @GetMapping("/persondata")
     public String personData(Model model){
-
+        // tilføj person collection til model atribut persons
         model.addAttribute("persons", personService.fetchAllPersons());
+        // vis view persondata
         return "persondata";
     }
 
