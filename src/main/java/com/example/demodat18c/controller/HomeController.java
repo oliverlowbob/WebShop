@@ -47,9 +47,12 @@ public class HomeController {
         return "create";
     }
 
+    //route for at oprette - bruges når der trykkes submit/Opret - henter first_name og last_name via Person
     @PostMapping("/create")
     public String create(@ModelAttribute Person person){
+        // tilføj person vha. add service
         personService.addPerson(person);
+        // sikr mod refresh problem
         return "redirect:/persondata";
     }
 

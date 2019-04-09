@@ -37,7 +37,9 @@ public class PersonRepo {
     }
 
     public void addPerson(Person person){
+        // prepared statement
         String sql = "INSERT INTO person (id, first_name, last_name) VALUES (?, ?, ?)";
+        // udfør insert med jdbc template
         template.update(sql, person.getId(), person.getFirst_name(), person.getLast_name());
     }
 
