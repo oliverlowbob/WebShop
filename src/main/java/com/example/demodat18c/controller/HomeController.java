@@ -5,10 +5,7 @@ import com.example.demodat18c.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 // annotation for controller
@@ -53,6 +50,15 @@ public class HomeController {
         // tilføj person vha. add service
         personService.addPerson(person);
         // sikr mod refresh problem
+        return "redirect:/persondata";
+    }
+
+    // få fat id fra stien vha. @PathVariable
+    @GetMapping("/delete/{iden}")
+    public String delete(@PathVariable("iden") int id){
+        //kald deleteservice med id
+        personService.deletePerson(id);
+        //sikr mod refresh fejl og sletter igen
         return "redirect:/persondata";
     }
 

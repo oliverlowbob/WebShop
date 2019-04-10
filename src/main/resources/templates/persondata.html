@@ -18,6 +18,8 @@
     <p th:each="person : ${persons}">
         <span th:text="${person.first_name}" />
         <span th:text="${person.last_name}" />
+        <!-- rødt link til slet af person -->
+        <a style="color:red;" th:href="@{'/delete/' + ${person.id}}">slet</a>
     </p>
 
     <!-- link til create ny person -->

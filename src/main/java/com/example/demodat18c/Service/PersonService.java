@@ -25,4 +25,8 @@ public class PersonService {
     public void addPerson(Person person){
         personRepo.addPerson(person);
     }
+
+    public void deletePerson(int id){
+        personRepo.deletePerson(id);
+    }
 }

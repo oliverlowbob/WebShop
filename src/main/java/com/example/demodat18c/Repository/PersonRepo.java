@@ -43,4 +43,11 @@ public class PersonRepo {
         template.update(sql, person.getId(), person.getFirst_name(), person.getLast_name());
     }
 
+    public void deletePerson(int id){
+        // delete statement
+        String sql = "DELETE FROM person WHERE id=?";
+
+        //kald update med delete statement og id
+        template.update(sql, id);
+    }
 }
