@@ -16,6 +16,8 @@
 
     <!-- for each på persons i view model -->
     <p th:each="person : ${persons}">
+        <!-- blåt link til update af person -->
+        <a style="color:green;" th:href="@{'/update/' + ${person.id}}">opdater</a>
         <span th:text="${person.first_name}" />
         <span th:text="${person.last_name}" />
         <!-- rødt link til slet af person -->

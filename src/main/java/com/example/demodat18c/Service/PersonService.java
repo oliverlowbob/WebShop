@@ -29,4 +29,12 @@ public class PersonService {
     public void deletePerson(int id){
         personRepo.deletePerson(id);
     }
+
+    public Person findPersonById(int id){
+        return personRepo.findPersonById(id);
+    }
+
+    public void updatePerson(Person person){
+        personRepo.updatePerson(person);
+    }
 }

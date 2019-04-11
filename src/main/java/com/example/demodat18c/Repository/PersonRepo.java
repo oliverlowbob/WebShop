@@ -41,6 +41,7 @@ public class PersonRepo {
         String sql = "INSERT INTO person (id, first_name, last_name) VALUES (?, ?, ?)";
         // udfør insert med jdbc template
         template.update(sql, person.getId(), person.getFirst_name(), person.getLast_name());
+        //System.out.println("Person Id: " + person.getId());
     }
 
     public void deletePerson(int id){
@@ -49,5 +50,21 @@ public class PersonRepo {
 
         //kald update med delete statement og id
         template.update(sql, id);
+    }
+
+    public Person findPersonById(int id){
+        //sql query der finder person vha. id
+        String sql ="SELECT * FROM person WHERE id=?";
+        //instantier rowmapper til at mappe query result til person object
+        RowMapper<Person> rowMapper = new BeanPropertyRowMapper<>(Person.class);
+        //udfør query med JdbcTemplate
+        return template.queryForObject(sql, rowMapper, id);
+    }
+
+    public void updatePerson(Person person){
+        //sql statement der opdaterer rækken id med person objektet
+        String sql ="UPDATE person SET first_name=?, last_name=? WHERE id=?";
+        //udfør update med JdbcTemplate
+        template.update(sql, person.getFirst_name(), person.getLast_name(), person.getId());
     }
 }

@@ -62,6 +62,23 @@ public class HomeController {
         return "redirect:/persondata";
     }
 
+    // få fat id fra stien vha. @PathVariable
+    @GetMapping("/update/{id}")
+    public String showUpdate(@PathVariable("id") int id, Model model){
+        //tilføj person med id til viewmodel
+        model.addAttribute("person", personService.findPersonById(id));
+        return "update";
+    }
+
+    // opdater person - @ModelAttribute bruges til at få fat i person fra post
+    @PostMapping("/update")
+    public String updateDoIt(@ModelAttribute Person person){
+        //kald update service
+        personService.updatePerson(person);
+        //sikr mod refresh fejl og sletter igen
+        return "redirect:/persondata";
+    }
+
     /*
     @GetMapping("/inputside")
     public String inputSide(){
