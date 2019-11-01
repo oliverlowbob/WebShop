@@ -12,20 +12,27 @@
 </head>
 
 <body>
-    <h1>Vis Persondata</h1>
-
-    <!-- for each på persons i view model -->
+<table>
+    <thead>
+    <tr>
+        <th>Varenavn</th>
+        <th>Pris</th>
+        <th>Beskrivelse</th>
+    </tr>
+    </thead>
+    <body>
     <p th:each="person : ${persons}">
         <!-- blåt link til update af person -->
-        <a style="color:green;" th:href="@{'/update/' + ${person.id}}">opdater</a>
-        <span th:text="${person.first_name}" />
-        <span th:text="${person.last_name}" />
+        <a style="color:green;" th:href="@{'/update/' + ${product.id}}">Opdater</a>
+        <span th:text="${product.name}" />
+        <span th:text="${product.price}" />
+        <span th:text="${product.description}" />
         <!-- rødt link til slet af person -->
-        <a style="color:red;" th:href="@{'/delete/' + ${person.id}}">slet</a>
+        <a style="color:red;" th:href="@{'/delete/' + ${product.id}}">slet</a>
     </p>
 
-    <!-- link til create ny person -->
-    <a href="/create">Opret ny Person</a>
+    <!-- link til create ny product -->
+    <a href="/create">Nyt produkt</a>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

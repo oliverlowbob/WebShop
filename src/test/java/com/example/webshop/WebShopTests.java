@@ -1,4 +1,4 @@
-package com.example.demodat18c;
+package com.example.webshop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Demodat18cApplicationTests {
+public class WebShopTests {
 
     @Test
     public void contextLoads() {
