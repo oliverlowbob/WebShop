@@ -21,7 +21,7 @@ public class ProductRepo {
     public List<Product> fetchAllProducts(){
 
         //her skal der hentes personer fra databasen
-        String sql = "SELECT * FROM products";
+        String sql = "SELECT * FROM product";
         // rowmapper mapper rækker i sql-query'en til en liste af Person
         RowMapper<Product> rowMapper = new BeanPropertyRowMapper<>(Product.class);
         // udfør sql query
@@ -31,14 +31,14 @@ public class ProductRepo {
 
     public void addProduct(Product product){
         // prepared statement
-        String sql = "INSERT INTO products (id, name, price, description) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO product (id, name, price, description) VALUES (?, ?, ?, ?)";
         // udfør insert med jdbc template
         template.update(sql, product.getId(), product.getName(), product.getPrice(), product.getDescription());
     }
 
     public void deleteProduct(int id){
         // delete statement
-        String sql = "DELETE FROM products WHERE id=?";
+        String sql = "DELETE FROM product WHERE id=?";
 
         //kald update med delete statement og id
         template.update(sql, id);
@@ -46,7 +46,7 @@ public class ProductRepo {
 
     public Product findProductById(int id){
         //sql query der finder person vha. id
-        String sql ="SELECT * FROM products WHERE id=?";
+        String sql ="SELECT * FROM product WHERE id=?";
         //instantier rowmapper til at mappe query result til person object
         RowMapper<Product> rowMapper = new BeanPropertyRowMapper<>(Product.class);
         //udfør query med JdbcTemplate
@@ -55,7 +55,7 @@ public class ProductRepo {
 
     public void updateProduct(Product product){
         //sql statement der opdaterer rækken id med person objektet
-        String sql ="UPDATE products SET name=?, price=?, description=?, WHERE id=?";
+        String sql ="UPDATE product SET name=?, price=?, description=? WHERE id=?";
         //udfør update med JdbcTemplate
         template.update(sql, product.getName(), product.getPrice(), product.getDescription(), product.getId());
     }

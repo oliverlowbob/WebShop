@@ -58,7 +58,7 @@ public class HomeController {
     @GetMapping("/update/{id}")
     public String showUpdate(@PathVariable("id") int id, Model model){
         //tilføj person med id til viewmodel
-        model.addAttribute("products", productService.findProductById(id));
+        model.addAttribute("product", productService.findProductById(id));
         return "update";
     }
 
