@@ -1,8 +1,8 @@
 package com.example.webshop.Service;
 
 import com.example.webshop.Model.Product;
-import com.example.webshop.Repository.IProductRepo;
-import com.example.webshop.Repository.ProductRepo;
+;
+import com.example.webshop.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,48 +10,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// annoter som service lag
+
+//annoter som service
 @Service
 public class ProductService {
 
-    // dependency injection af repository
+    //Annoter med autowired til repository
     @Autowired
-    IProductRepo productRepo;
-//    ProductRepo productRepo;
+    ProductRepository productRepository;
 
-
-    // hent alle personer fra repository
-    public List<Product> fetchtAllProducts(){
+    public List<Product> getAll()
+    {
+        //kald repo.getall og returner
         List<Product> products = new ArrayList<>();
-        for (Product product : productRepo.findAll())
-              {
+        for(Product product:productRepository.findAll()) {
             products.add(product);
         }
         return products;
     }
 
-//    public void addProduct(Product product){
-//        productRepo.addProduct(product);
-//    }
-public void addProduct(Product product){
-    productRepo.save(product);
-}
-
-
-    public void deleteProduct(int id){
-        productRepo.deleteById(id);
+    public void create(Product product)
+    {
+        productRepository.save(product);
     }
 
-    public Product findProductById(int id){
-        Optional<Product> productOptional = productRepo.findById(id);
-        if(!productOptional.isPresent()) {
+    public void delete(Long id) { productRepository.deleteById(id); }
+
+
+
+    public Product findById(Long id) {
+        //findById giver en optional
+        Optional<Product> productOptional = productRepository.findById(id);
+        //hvis der ikke findes et product på id, kastes der en fejl
+        if (!productOptional.isPresent())
+        {
             throw new RuntimeException("Product not found");
         }
+        //returner product vha. .get()
         return productOptional.get();
-
     }
 
-    public void updateProduct(Product product){
-        productRepo.save(product);
-    }
+    public void update(Product product) { productRepository.save(product); }
+
 }
+

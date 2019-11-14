@@ -1,23 +1,28 @@
 package com.example.webshop.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
+@Table(name="products")
 public class Product {
+
+    //primær nøgle
     @Id
+    //lad MySQL give den næste id (IDENTITY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int price;
+    private double price;
     private String description;
+
 
     public Product() {
     }
 
-    public Product(int id, String name, int price, String description) {
-        this.id = id;
+    public Product(String name, double price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -39,11 +44,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -55,4 +60,3 @@ public class Product {
         this.description = description;
     }
 }
-
